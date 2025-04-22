@@ -18,9 +18,32 @@
         <button class="button-add-task"> Adicionar </button>
 
         <ul class="list-tasks">
-            
+
         </ul>
     </div>
+
+    <div id="calendario" class="aba" style="display: none;">
+        <h2>Calendário</h2>
+        <div class="calendario-container">
+            <div class="calendario-header">
+                <button id="mesAnterior">&lt;</button>
+                <h3 id="mesAno"></h3>
+                <button id="mesProximo">&gt;</button>
+            </div>
+            <div class="calendario-dias">
+                <div>Dom</div>
+                <div>Seg</div>
+                <div>Ter</div>
+                <div>Qua</div>
+                <div>Qui</div>
+                <div>Sex</div>
+                <div>Sáb</div>
+            </div>
+            <div id="calendarioCorpo" class="calendario-corpo"></div>
+        </div>
+    </div>
+
 </body>
 <script src="script.js"></script>
+
 </html>
