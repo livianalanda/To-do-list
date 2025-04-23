@@ -84,7 +84,7 @@ function renderizarCalendario(data) {
     const primeiroDiaSemana = primeiroDia.getDay();
 
     mesAno.textContent = data.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
-    
+
     calendarioCorpo.innerHTML = '';
 
     for (let i = 0; i < primeiroDiaSemana; i++) {
@@ -92,8 +92,12 @@ function renderizarCalendario(data) {
     }
 
     for (let dia = 1; dia <= ultimoDia.getDate(); dia++) {
-        calendarioCorpo.innerHTML += `<div>${dia}</div>`;
+        const hoje = new Date();
+        const isHoje = dia === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
+
+        calendarioCorpo.innerHTML += `<div class="${isHoje ? 'hoje' : ''}">${dia}</div>`;
     }
+
 }
 
 bntMesAnterior.addEventListener('click', () => {

@@ -95,7 +95,7 @@ img {
     text-align: center;
 }
 
-.calendario.header {
+.calendario-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,4 +188,12 @@ img {
     text-align: center;
     color: #ffffff;
     font-weight: normal;
+    width: 100%;
+}
+
+.hoje {
+    background-color: #FF5B8D;
+    color: #d6336c;
+    font-weight: bold;
+    border: 2px solid #d6336c;
 }
