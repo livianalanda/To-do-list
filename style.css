@@ -197,3 +197,12 @@ img {
     font-weight: bold;
     border: 2px solid #d6336c;
 }
+
+.task img {
+    opacity: 0.5;
+}
+
+.task:hover img {
+    opacity: 1;
+}
+
