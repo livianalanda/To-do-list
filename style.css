@@ -14,7 +14,7 @@ body {
 .container {
     background-color: #ffd8f1;
     width: 500px;
-    border-radius: 5%;
+    border-radius: 8px;
     padding: 20px;
     margin: 100px auto 0;
 }
@@ -82,4 +82,38 @@ img {
 .done {
     background-color: #65e6c5;
     text-decoration: line-through;
+}
+
+.calendario-container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #ffd8f1;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.calendario.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendario-dias, .calendario-corpo {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendario-dias div {
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.calendario-corpo div {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
