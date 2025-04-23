@@ -31,7 +31,7 @@ body {
     border: none;
     border-radius: 5px;
     height: 36px;
-    background-color: #f268bf;
+    background-color: #FF5B8D;
     color: #ffffff;
     font-size: 14px;
     padding: 0 10px;
@@ -41,10 +41,12 @@ body {
 
 .button-add-task:hover {
     opacity: 0.8;
+    transform: scale(1.1);
 }
 
 .button-add-task:active {
     opacity: 0.6;
+    transform: scale(1.1);
 }
 
 .list-tasks {
@@ -80,7 +82,7 @@ img {
 }
 
 .done {
-    background-color: #65e6c5;
+    background-color: #d0f0fd;
     text-decoration: line-through;
 }
 
@@ -95,9 +97,23 @@ img {
 
 .calendario.header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
     margin-bottom: 10px;
+}
+
+#mesAno {
+    border: none;
+    border-radius: 5px;
+    height: 36px;
+    background-color: #FF5B8D;
+    color: #ffffff;
+    font-size: 1.2rem;
+    padding: 8px 10px;
+    float:inline-end;
+    cursor: pointer;
+    font-weight: normal;
 }
 
 .calendario-dias, .calendario-corpo {
@@ -107,7 +123,7 @@ img {
 }
 
 .calendario-dias div {
-    font-weight: bold;
+    font-size: 1.2rem;
     padding: 5px 0;
 }
 
@@ -122,7 +138,7 @@ img {
     border: none;
     border-radius: 5px;
     height: 36px;
-    background-color: #f268bf;
+    background-color: #FF5B8D;
     color: #ffffff;
     font-size: 15px;
     padding: 8px 10px;
@@ -130,10 +146,46 @@ img {
     cursor: pointer;
 }
 
-.calendario:hover{
+.calendario:hover {
     opacity: 0.8;
+    transform: scale(1.1);
 }
 
 .calendario:active {
     opacity: 0.6;
+    transform: scale(1.1);
+}
+
+.calendario-dias {
+    background-color: #FF5B8D;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 2px 10px;
+    transition: transform 0.2s ease;
+}
+
+
+.calendario-botao {
+    background-color: #FF5B8D;
+    border-radius: 5px;
+    border: none;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 2px 10px;
+    transition: transform 0.2s ease;
+}
+
+.calendario-botao:hover {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+#calendario h2 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: normal;
 }
