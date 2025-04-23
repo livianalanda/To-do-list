@@ -117,3 +117,23 @@ img {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
+.calendario {
+    border: none;
+    border-radius: 5px;
+    height: 36px;
+    background-color: #f268bf;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 8px 10px;
+    float: right;
+    cursor: pointer;
+}
+
+.calendario:hover{
+    opacity: 0.8;
+}
+
+.calendario:active {
+    opacity: 0.6;
+}
