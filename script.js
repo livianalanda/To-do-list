@@ -72,22 +72,31 @@ document.getElementById("adicionarTarefa").onclick = () => {
     const valor = document.getElementById("novaTarefa").value;
     if (valor.trim() !== "") {
         const li = document.createElement("li");
-        li.innerHTML = `<span>${valor}</span> <input type="checkbox" onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'">`;
+        li.innerHTML = `
+            <span>${valor}</span> 
+            <input type="checkbox" onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; salvarTarefas()"> 
+            <span class="botao-excluir-tarefa" title="Excluir tarefa">🗑️</span>
+        `;
+        li.querySelector(".botao-excluir-tarefa").addEventListener("click", () => {
+            li.remove();
+            salvarTarefas();
+        });
         listaTarefas.appendChild(li);
         salvarTarefas();
         document.getElementById("novaTarefa").value = "";
     }
 };
 
+
 function salvarTarefas() {
     const tarefas = [];
-    listaTarefas.querySelectorAll("li span").forEach(span => {
-        const checkbox = span.parentElement.querySelector("input[type='checkbox']");
+    listaTarefas.querySelectorAll("li").forEach(li => {
+        const texto = li.querySelector("span").innerText;
+        const checkbox = li.querySelector("input[type='checkbox']");
         tarefas.push({
-            texto: span.innerText,
+            texto,
             concluida: checkbox.checked
         });
-
     });
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
@@ -96,14 +105,22 @@ function carregarTarefas() {
     const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas")) || [];
     tarefasSalvas.forEach(obj => {
         const li = document.createElement("li");
-        li.innerHTML = `<span>${obj.texto}</span> <input type="checkbox" ${obj.concluida ? "checked" : ""} onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; salvarTarefas()">`;
+        li.innerHTML = `
+            <span>${obj.texto}</span> 
+            <input type="checkbox" ${obj.concluida ? "checked" : ""} onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; salvarTarefas()"> 
+            <span class="botao-excluir-tarefa" title="Excluir tarefa">🗑️</span>
+        `;
         if (obj.concluida) {
             li.style.textDecoration = "line-through";
         }
+        li.querySelector(".botao-excluir-tarefa").addEventListener("click", () => {
+            li.remove();
+            salvarTarefas();
+        });
         listaTarefas.appendChild(li);
     });
-
 }
+
 carregarTarefas();
 
 
@@ -119,7 +136,9 @@ document.getElementById("adicionarMeta").addEventListener("click", () => {
       `;
         li.querySelector(".botao-excluir").addEventListener("click", () => {
             li.remove();
+            salvarMetas();
         });
+
         document.getElementById("listaMetas").appendChild(li);
         inputMeta.value = "";
         salvarMetas();

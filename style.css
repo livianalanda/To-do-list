@@ -76,7 +76,7 @@ body {
     background: #fff;
     padding: 12px 18px;
     border-radius: 20px 20px 20px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     font-weight: bold;
     max-width: 200px;
     font-size: 14px;
@@ -152,13 +152,13 @@ li {
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
-  }
-  
-  .botao-excluir:hover {
+}
+
+.botao-excluir:hover {
     background-color: #f5aabf;
-  }
-  
-  .hoje {
+}
+
+.hoje {
     border: 2px solid #d6336c;
     font-weight: bold;
     background-color: #ffe0ec;
@@ -176,6 +176,7 @@ li {
     bottom: 5px;
     right: 10px;
 }
+
 .calendar-grid div {
     position: relative;
 }
@@ -186,4 +187,11 @@ li {
     background-color: #ffe2ec;
     border-left: 5px solid #f88da3;
     font-weight: 500;
+}
+
+.botao-excluir-tarefa {
+    cursor: pointer;
+    margin-left: 8px;
+    color: red;
+    font-size: 1.1em;
 }
