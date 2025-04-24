@@ -2,6 +2,8 @@
 const diasContainer = document.getElementById("diasCalendario");
 const mesAno = document.getElementById("mesAno");
 const dataAtual = new Date();
+let mesAtual = dataAtual.getMonth();
+let anoAtual = dataAtual.getFullYear();
 const eventos = JSON.parse(localStorage.getItem("eventos")) || {};
 
 
@@ -23,9 +25,16 @@ function carregarCalendario(mes, ano) {
         divDia.onclick = () => abrirModal(dia, mes, ano);
 
         const hoje = new Date();
-        if (dia === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear()) {
+        if (
+            dia === hoje.getDate() &&
+            mes === hoje.getMonth() &&
+            ano === hoje.getFullYear()
+        ) {
             divDia.classList.add("hoje");
+        } else {
+            divDia.classList.remove("hoje");
         }
+
 
         const dataFormatada = `${dia}/${mes + 1}/${ano}`;
         if (eventos[dataFormatada]) {
@@ -37,7 +46,7 @@ function carregarCalendario(mes, ano) {
 
 }
 
-carregarCalendario(dataAtual.getMonth(), dataAtual.getFullYear());
+carregarCalendario(mesAtual, anoAtual);
 
 // Tabs
 document.querySelectorAll(".tab-button").forEach(btn => {
@@ -93,7 +102,7 @@ function carregarTarefas() {
         }
         listaTarefas.appendChild(li);
     });
-    
+
 }
 carregarTarefas();
 
@@ -195,3 +204,21 @@ function carregarMetas() {
     });
 }
 carregarMetas();
+
+document.getElementById("mesAnterior").addEventListener("click", () => {
+    mesAtual--;
+    if (mesAtual < 0) {
+        mesAtual = 11;
+        anoAtual--;
+    }
+    carregarCalendario(mesAtual, anoAtual);
+});
+
+document.getElementById("mesSeguinte").addEventListener("click", () => {
+    mesAtual++;
+    if (mesAtual > 11) {
+        mesAtual = 0;
+        anoAtual++;
+    }
+    carregarCalendario(mesAtual, anoAtual);
+});

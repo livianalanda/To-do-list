@@ -17,8 +17,11 @@
 
     <div id="calendario" class="tab-content active">
         <div class="calendar-header">
+            <button id="mesAnterior">←</button>
             <h2 id="mesAno"></h2>
+            <button id="mesSeguinte">→</button>
         </div>
+
         <div class="calendar-grid" id="diasCalendario"></div>
         <button id="btnMostrarEventos">Eventos</button>
 
@@ -28,7 +31,7 @@
         <h3>Todos os eventos</h3>
         <ul id="eventosGerais"></ul>
     </div>
-    
+
     <div id="metas" class="tab-content">
         <h3>Adicionar uma meta</h3>
         <input type="text" id="novaMeta" placeholder="Digite sua meta" />
