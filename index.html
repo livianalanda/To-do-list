@@ -2,50 +2,46 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Todo List</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planner</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <div class="container">
-        <input class="input-task" placeholder="O que tenho que fazer...?" />
-        <button class="button-add-task"> Adicionar </button>
-        <button class="calendario" onclick="abrirAba('calendario')">Calendário</button>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="calendario">Calendário</button>
+            <button class="tab-button" data-tab="metas">Metas</button>
+            <button class="tab-button" data-tab="tarefas">Tarefas</button>
+        </div>
 
+        <div class="tab-content active" id="calendario">
+            <h2>Abril 2024</h2>
+            <!-- Calendário real virá depois -->
+            <button class="add-button">+ Adicionar Evento</button>
+            <div class="frase-do-dia">Acredite que você pode e você já está no meio do caminho.</div>
+        </div>
 
-        <ul class="list-tasks">
+        <div class="tab-content" id="metas">
+            <h2>Adicionar uma meta</h2>
+            <input type="text" placeholder="Digite sua meta" />
+            <button class="add-button">+ Adicionar Meta</button>
+        </div>
 
-        </ul>
-    </div>
-
-    <div id="calendario" class="aba" style="display: none;">
-        <h2>Calendário</h2>
-        <div class="calendario-container">
-            <div class="calendario-header">
-                <button class="calendario-botao" id="mesAnterior">↩</button>
-                <h3 id="mesAno"></h3>
-                <button class="calendario-botao" id="mesProximo">↪</button>
-            </div>
-            <div class="calendario-dias">
-                <div>Dom</div>
-                <div>Seg</div>
-                <div>Ter</div>
-                <div>Qua</div>
-                <div>Qui</div>
-                <div>Sex</div>
-                <div>Sáb</div>
-            </div>
-            <div id="calendarioCorpo" class="calendario-corpo"></div>
+        <div class="tab-content" id="tarefas">
+            <h2>Tarefas</h2>
+            <ul class="task-list">
+                <li><input type="checkbox" /> Escrever relatório</li>
+                <li><input type="checkbox" checked /> Regar plantas</li>
+                <li><input type="checkbox" /> Ler livro</li>
+                <li><input type="checkbox" /> Ir à academia</li>
+            </ul>
+            <input type="text" placeholder="Adicionar uma nova tarefa" class="add-task-input" />
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>
