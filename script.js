@@ -1,82 +1,98 @@
-const tabs = document.querySelectorAll('.tab-button');
-const contents = document.querySelectorAll('.tab-content');
+// Atualizar calendário
+const diasContainer = document.getElementById("diasCalendario");
+const mesAno = document.getElementById("mesAno");
+const dataAtual = new Date();
+const eventos = {};
 
-tabs.forEach(button => {
-    button.addEventListener('click', () => {
-        const tab = button.dataset.tab;
-
-        tabs.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        contents.forEach(content => {
-            content.classList.remove('active');
-            if (content.id === tab) {
-                content.classList.add('active');
-            }
-        });
-    });
-});
-
-let diaSelecionado = null;
-
-function gerarCalendario(mes, ano) {
-  const diasDoMes = document.getElementById("diasDoMes");
-  const mesAno = document.getElementById("mesAno");
-
+function carregarCalendario(mes, ano) {
+  diasContainer.innerHTML = "";
+  const primeiroDia = new Date(ano, mes, 1).getDay();
+  const totalDias = new Date(ano, mes + 1, 0).getDate();
   const nomesMeses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
                       "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
   mesAno.innerText = `${nomesMeses[mes]} ${ano}`;
 
-  diasDoMes.innerHTML = "";
-
-  const primeiroDia = new Date(ano, mes, 1).getDay();
-  const totalDias = new Date(ano, mes + 1, 0).getDate();
-
   for (let i = 0; i < primeiroDia; i++) {
-    const vazio = document.createElement("div");
-    vazio.classList.add("vazio");
-    diasDoMes.appendChild(vazio);
+    diasContainer.innerHTML += `<div></div>`;
   }
 
-  for (let i = 1; i <= totalDias; i++) {
-    const dia = document.createElement("div");
-    dia.textContent = i;
-
-    const dataKey = `${i}-${mes + 1}-${ano}`;
-    const evento = localStorage.getItem(dataKey);
-
-    if (evento) {
-      dia.title = evento;
-      dia.style.background = "#ffc4dc";
-    }
-
-    dia.onclick = () => {
-      diaSelecionado = dataKey;
-      abrirModal();
-    };
-
-    diasDoMes.appendChild(dia);
+  for (let dia = 1; dia <= totalDias; dia++) {
+    const divDia = document.createElement("div");
+    divDia.innerText = dia;
+    divDia.onclick = () => abrirModal(dia, mes, ano);
+    diasContainer.appendChild(divDia);
   }
 }
 
-function abrirModal() {
-  document.getElementById("eventoModal").classList.remove("hidden");
-  document.getElementById("inputEvento").value = "";
-}
+carregarCalendario(dataAtual.getMonth(), dataAtual.getFullYear());
 
-function fecharModal() {
-  document.getElementById("eventoModal").classList.add("hidden");
-}
+// Tabs
+document.querySelectorAll(".tab-button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+  });
+});
 
-function salvarEvento() {
-  const evento = document.getElementById("inputEvento").value;
-  if (evento.trim() !== "" && diaSelecionado) {
-    localStorage.setItem(diaSelecionado, evento);
-    fecharModal();
-    const hoje = new Date();
-    gerarCalendario(hoje.getMonth(), hoje.getFullYear());
+// Tarefas
+const listaTarefas = document.getElementById("listaTarefas");
+document.getElementById("adicionarTarefa").onclick = () => {
+  const valor = document.getElementById("novaTarefa").value;
+  if (valor.trim() !== "") {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${valor}</span> <input type="checkbox" onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'">`;
+    listaTarefas.appendChild(li);
+    document.getElementById("novaTarefa").value = "";
   }
+};
+
+// Metas
+const listaMetas = document.getElementById("listaMetas");
+document.getElementById("adicionarMeta").onclick = () => {
+  const valor = document.getElementById("novaMeta").value;
+  if (valor.trim() !== "") {
+    const li = document.createElement("li");
+    li.textContent = valor;
+    li.onclick = () => li.remove();
+    listaMetas.appendChild(li);
+    document.getElementById("novaMeta").value = "";
+  }
+};
+
+// Modal Evento
+const modal = document.getElementById("modalEvento");
+const dataSelecionada = document.getElementById("dataSelecionada");
+let diaSelecionado = null;
+
+function abrirModal(dia, mes, ano) {
+  diaSelecionado = `${dia}/${mes+1}/${ano}`;
+  dataSelecionada.innerText = `Dia ${diaSelecionado}`;
+  modal.style.display = "block";
+  atualizarListaEventos();
 }
 
-const hoje = new Date();
-gerarCalendario(hoje.getMonth(), hoje.getFullYear());
+document.getElementById("fecharModal").onclick = () => {
+  modal.style.display = "none";
+};
+
+document.getElementById("salvarEvento").onclick = () => {
+  const titulo = document.getElementById("tituloEvento").value;
+  if (titulo.trim()) {
+    if (!eventos[diaSelecionado]) eventos[diaSelecionado] = [];
+    eventos[diaSelecionado].push(titulo);
+    document.getElementById("tituloEvento").value = "";
+    atualizarListaEventos();
+  }
+};
+
+function atualizarListaEventos() {
+  const lista = document.getElementById("listaEventos");
+  lista.innerHTML = "";
+  (eventos[diaSelecionado] || []).forEach(ev => {
+    const li = document.createElement("li");
+    li.textContent = ev;
+    lista.appendChild(li);
+  });
+}

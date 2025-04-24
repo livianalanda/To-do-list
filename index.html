@@ -4,71 +4,53 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planner</title>
+    <title>Planner Fofo</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="tabs">
-            <button class="tab-button active" data-tab="calendario">Calendário</button>
-            <button class="tab-button" data-tab="metas">Metas</button>
-            <button class="tab-button" data-tab="tarefas">Tarefas</button>
-        </div>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="calendario">Calendário</button>
+        <button class="tab-button" data-tab="metas">Metas</button>
+        <button class="tab-button" data-tab="tarefas">Tarefas</button>
+    </div>
 
-        <div class="tab-content active" id="calendario">
-            <h2 id="mesAno">Abril 2025</h2>
-            <div class="calendario">
-                <div class="dias-semana">
-                    <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
-                </div>
-                <div class="dias-do-mes" id="diasDoMes"></div>
-            </div>
-            <button class="add-button">+ Adicionar Evento</button>
-            <div class="frase-do-dia">Acredite que você pode e você já está no meio do caminho.</div>
+    <div id="calendario" class="tab-content active">
+        <div class="calendar-header">
+            <h2 id="mesAno"></h2>
         </div>
+        <div class="calendar-grid" id="diasCalendario"></div>
+        <button id="btnAdicionarEvento">+ Adicionar Evento</button>
+        <div class="mensagem">Acredite que você pode e você já está no meio do caminho.</div>
+    </div>
 
-        <div class="tab-content" id="metas">
-            <h2>Adicionar uma meta</h2>
-            <input type="text" placeholder="Digite sua meta" />
-            <button class="add-button">+ Adicionar Meta</button>
-        </div>
+    <div id="metas" class="tab-content">
+        <h3>Adicionar uma meta</h3>
+        <input type="text" id="novaMeta" placeholder="Digite sua meta" />
+        <button id="adicionarMeta">+ Adicionar Meta</button>
+        <ul id="listaMetas"></ul>
+    </div>
 
-        <div class="tab-content" id="tarefas">
-            <h2>Tarefas</h2>
-            <ul class="task-list">
-                <li><input type="checkbox" /> Escrever relatório</li>
-                <li><input type="checkbox" checked /> Regar plantas</li>
-                <li><input type="checkbox" /> Ler livro</li>
-                <li><input type="checkbox" /> Ir à academia</li>
-            </ul>
-            <input type="text" placeholder="Adicionar uma nova tarefa" class="add-task-input" />
+    <div id="tarefas" class="tab-content">
+        <h3>Tarefas</h3>
+        <ul id="listaTarefas"></ul>
+        <input type="text" id="novaTarefa" placeholder="Adicionar uma nova tarefa" />
+        <button id="adicionarTarefa">+</button>
+    </div>
+
+    <!-- Modal de Evento -->
+    <div id="modalEvento" class="modal">
+        <div class="modal-conteudo">
+            <span id="fecharModal">&times;</span>
+            <h3>Adicionar Evento</h3>
+            <p id="dataSelecionada"></p>
+            <input type="text" id="tituloEvento" placeholder="Nome do evento" />
+            <button id="salvarEvento">Salvar</button>
+            <ul id="listaEventos"></ul>
         </div>
     </div>
 
     <script src="script.js"></script>
-
-    <div id="eventoModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-button" onclick="fecharModal()">❎</span>
-            <h3>Adicionar Evento</h3>
-            <input type="text" id="inputEvent" placeholder="Digite o evento">
-            <button onclick="salvarEvento()">Salvar</button>
-        </div>
-
-    </div>
-
-    <div id="eventoModal" class="modal hidden">
-        <div class="modal-content">
-          <h3>Adicionar Evento</h3>
-          <input type="text" id="inputEvento" placeholder="Digite o evento" />
-          <div class="modal-buttons">
-            <button onclick="salvarEvento()">Salvar</button>
-            <button onclick="fecharModal()">Cancelar</button>
-          </div>
-        </div>
-      </div>
-      
 </body>
 
 </html>
