@@ -2,7 +2,8 @@
 const diasContainer = document.getElementById("diasCalendario");
 const mesAno = document.getElementById("mesAno");
 const dataAtual = new Date();
-const eventos = {};
+const eventos = JSON.parse(localStorage.getItem("eventos")) || {};
+
 
 function carregarCalendario(mes, ano) {
     diasContainer.innerHTML = "";
@@ -20,20 +21,20 @@ function carregarCalendario(mes, ano) {
         const divDia = document.createElement("div");
         divDia.innerText = dia;
         divDia.onclick = () => abrirModal(dia, mes, ano);
-    
+
         const hoje = new Date();
         if (dia === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear()) {
             divDia.classList.add("hoje");
         }
-    
+
         const dataFormatada = `${dia}/${mes + 1}/${ano}`;
         if (eventos[dataFormatada]) {
             divDia.classList.add("com-evento");
         }
-    
+
         diasContainer.appendChild(divDia);
     }
-    
+
 }
 
 carregarCalendario(dataAtual.getMonth(), dataAtual.getFullYear());
@@ -44,9 +45,17 @@ document.querySelectorAll(".tab-button").forEach(btn => {
         document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
         document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
         btn.classList.add("active");
-        document.getElementById(btn.dataset.tab).classList.add("active");
+
+        const tabId = btn.dataset.tab;
+        document.getElementById(tabId).classList.add("active");
+
+        // Esconde lista de eventos se não for o calendário
+        const eventosLista = document.getElementById("listaTodosEventos");
+        eventosLista.style.display = tabId === "calendario" ? "block" : "none";
     });
 });
+
+
 
 // Tarefas
 const listaTarefas = document.getElementById("listaTarefas");
@@ -56,28 +65,59 @@ document.getElementById("adicionarTarefa").onclick = () => {
         const li = document.createElement("li");
         li.innerHTML = `<span>${valor}</span> <input type="checkbox" onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'">`;
         listaTarefas.appendChild(li);
+        salvarTarefas();
         document.getElementById("novaTarefa").value = "";
     }
 };
+
+function salvarTarefas() {
+    const tarefas = [];
+    listaTarefas.querySelectorAll("li span").forEach(span => {
+        const checkbox = span.parentElement.querySelector("input[type='checkbox']");
+        tarefas.push({
+            texto: span.innerText,
+            concluida: checkbox.checked
+        });
+
+    });
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+
+function carregarTarefas() {
+    const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas")) || [];
+    tarefasSalvas.forEach(obj => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span>${obj.texto}</span> <input type="checkbox" ${obj.concluida ? "checked" : ""} onclick="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; salvarTarefas()">`;
+        if (obj.concluida) {
+            li.style.textDecoration = "line-through";
+        }
+        listaTarefas.appendChild(li);
+    });
+    
+}
+carregarTarefas();
+
 
 // Metas
 document.getElementById("adicionarMeta").addEventListener("click", () => {
     const inputMeta = document.getElementById("novaMeta");
     const texto = inputMeta.value.trim();
     if (texto !== "") {
-      const li = document.createElement("li");
-      li.innerHTML = `
+        const li = document.createElement("li");
+        li.innerHTML = `
         ${texto}
         <span class="botao-excluir" title="Excluir meta">🗑️</span>
       `;
-      li.querySelector(".botao-excluir").addEventListener("click", () => {
-        li.remove();
-      });
-      document.getElementById("listaMetas").appendChild(li);
-      inputMeta.value = "";
+        li.querySelector(".botao-excluir").addEventListener("click", () => {
+            li.remove();
+        });
+        document.getElementById("listaMetas").appendChild(li);
+        inputMeta.value = "";
+        salvarMetas();
+
     }
-  });
-  
+});
+
 
 // Modal Evento
 const modal = document.getElementById("modalEvento");
@@ -102,8 +142,11 @@ document.getElementById("salvarEvento").onclick = () => {
         eventos[diaSelecionado].push(titulo);
         document.getElementById("tituloEvento").value = "";
         atualizarListaEventos();
+        modal.style.display = "none"; // Fecha o modal
+        localStorage.setItem("eventos", JSON.stringify(eventos));
     }
 };
+
 
 function atualizarListaEventos() {
     const lista = document.getElementById("listaEventos");
@@ -123,10 +166,32 @@ document.getElementById("btnMostrarEventos").addEventListener("click", () => {
     Object.keys(eventos).forEach(data => {
         eventos[data].forEach(ev => {
             const li = document.createElement("li");
-            li.textContent = `${data}: ${ev}`;
+            li.innerHTML = `<strong>${data}</strong> — ${ev}`;
             ul.appendChild(li);
         });
     });
 
     listaContainer.style.display = listaContainer.style.display === "none" ? "block" : "none";
 });
+
+function salvarMetas() {
+    const metas = [];
+    document.querySelectorAll("#listaMetas li").forEach(li => {
+        metas.push(li.firstChild.textContent.trim());
+    });
+    localStorage.setItem("metas", JSON.stringify(metas));
+}
+
+function carregarMetas() {
+    const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
+    metasSalvas.forEach(texto => {
+        const li = document.createElement("li");
+        li.innerHTML = `${texto} <span class="botao-excluir" title="Excluir meta">🗑️</span>`;
+        li.querySelector(".botao-excluir").addEventListener("click", () => {
+            li.remove();
+            salvarMetas();
+        });
+        document.getElementById("listaMetas").appendChild(li);
+    });
+}
+carregarMetas();
