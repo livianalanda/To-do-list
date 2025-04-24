@@ -151,3 +151,12 @@ li {
     background-color: #f5aabf;
   }
   
+  .hoje {
+    border: 2px solid #d6336c;
+    font-weight: bold;
+    background-color: #ffe0ec;
+}
+
+.com-evento {
+    background-color: #f9c6d0 !important;
+}

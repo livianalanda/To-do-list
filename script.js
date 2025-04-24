@@ -20,8 +20,20 @@ function carregarCalendario(mes, ano) {
         const divDia = document.createElement("div");
         divDia.innerText = dia;
         divDia.onclick = () => abrirModal(dia, mes, ano);
+    
+        const hoje = new Date();
+        if (dia === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear()) {
+            divDia.classList.add("hoje");
+        }
+    
+        const dataFormatada = `${dia}/${mes + 1}/${ano}`;
+        if (eventos[dataFormatada]) {
+            divDia.classList.add("com-evento");
+        }
+    
         diasContainer.appendChild(divDia);
     }
+    
 }
 
 carregarCalendario(dataAtual.getMonth(), dataAtual.getFullYear());
@@ -102,3 +114,19 @@ function atualizarListaEventos() {
         lista.appendChild(li);
     });
 }
+
+document.getElementById("btnMostrarEventos").addEventListener("click", () => {
+    const listaContainer = document.getElementById("listaTodosEventos");
+    const ul = document.getElementById("eventosGerais");
+    ul.innerHTML = "";
+
+    Object.keys(eventos).forEach(data => {
+        eventos[data].forEach(ev => {
+            const li = document.createElement("li");
+            li.textContent = `${data}: ${ev}`;
+            ul.appendChild(li);
+        });
+    });
+
+    listaContainer.style.display = listaContainer.style.display === "none" ? "block" : "none";
+});
