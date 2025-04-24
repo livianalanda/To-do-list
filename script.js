@@ -170,10 +170,12 @@ document.getElementById("salvarEvento").onclick = () => {
         eventos[diaSelecionado].push(titulo);
         document.getElementById("tituloEvento").value = "";
         atualizarListaEventos();
-        modal.style.display = "none"; // Fecha o modal
+        modal.style.display = "none";
         localStorage.setItem("eventos", JSON.stringify(eventos));
+        carregarCalendario(new Date().getMonth(), new Date().getFullYear()); // <---- AQUI
     }
 };
+
 
 
 function atualizarListaEventos() {

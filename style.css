@@ -195,3 +195,9 @@ li {
     color: red;
     font-size: 1.1em;
 }
+
+.com-evento {
+    background-color: #ffdbb5; /* cor suave para destacar */
+    border-radius: 50%;
+    border: 2px;
+}
