@@ -93,3 +93,37 @@ input[type="text"] {
     margin-top: 20px;
     font-size: 14px;
 }
+
+.calendario {
+    background: #ffe4ec;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 10px 0 20px;
+}
+
+.dias-semana,
+.dias-do-mes {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.dias-do-mes div {
+    background: #fff;
+    padding: 8px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dias-do-mes div:hover {
+    background: #ffd5e1;
+}
+
+.dias-do-mes .vazio {
+    background: none;
+    cursor: default;
+}

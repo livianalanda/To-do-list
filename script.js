@@ -16,3 +16,35 @@ tabs.forEach(button => {
         });
     });
 });
+
+function gerarCalendario(mes, ano) {
+    const diasDoMes = document.getElementById("diasDoMes");
+    const mesAno = document.getElementById("mesAno");
+
+    const nomesMeses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    mesAno.innerText = `${nomesMeses[mes]} ${ano}`;
+
+    diasDoMes.innerHTML = "";
+
+    const primeiroDia = new Date(ano, mes, 1).getDay();
+    const totalDias = new Date(ano, mes + 1, 0).getDate();
+
+    for (let i = 0; i < primeiroDia; i++) {
+        const vazio = document.createElement("div");
+        vazio.classList.add("vazio");
+        diasDoMes.appendChild(vazio);
+    }
+
+    for (let i = 1; i <= totalDias; i++) {
+        const dia = document.createElement("div");
+        dia.textContent = i;
+        diasDoMes.appendChild(dia);
+    }
+}
+
+function adicionarEvento() {
+    alert("Função de adicionar evento ainda será implementada!");
+}
+
+const hoje = new Date();
+gerarCalendario(hoje.getMonth(), hoje.getFullYear());
