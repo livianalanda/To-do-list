@@ -1,5 +1,9 @@
 # To-do List — Aplicação de Organização Pessoal
 
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+
 Este projeto é uma aplicação web completa para *organização pessoal*, desenvolvida com o objetivo de auxiliar o usuário na gestão de tarefas, metas e eventos, de forma prática, intuitiva e visualmente agradável.
 
 ## Funcionalidades
