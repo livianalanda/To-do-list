@@ -4,7 +4,7 @@ const mesAno = document.getElementById("mesAno");
 const dataAtual = new Date();
 let mesAtual = dataAtual.getMonth();
 let anoAtual = dataAtual.getFullYear();
-const eventos = JSON.parse(localStorage.getItem("eventos")) || {};
+let eventos = JSON.parse(localStorage.getItem("eventos")) || {};
 
 
 function carregarCalendario(mes, ano) {
@@ -172,7 +172,8 @@ document.getElementById("salvarEvento").onclick = () => {
         atualizarListaEventos();
         modal.style.display = "none";
         localStorage.setItem("eventos", JSON.stringify(eventos));
-        carregarCalendario(new Date().getMonth(), new Date().getFullYear()); // <---- AQUI
+        carregarCalendario(mesAtual, anoAtual);
+
     }
 };
 
@@ -189,6 +190,7 @@ function atualizarListaEventos() {
 }
 
 document.getElementById("btnMostrarEventos").addEventListener("click", () => {
+    eventos = JSON.parse(localStorage.getItem("eventos")) || {}; // Recarrega os eventos atualizados
     const listaContainer = document.getElementById("listaTodosEventos");
     const ul = document.getElementById("eventosGerais");
     ul.innerHTML = "";
@@ -203,6 +205,7 @@ document.getElementById("btnMostrarEventos").addEventListener("click", () => {
 
     listaContainer.style.display = listaContainer.style.display === "none" ? "block" : "none";
 });
+
 
 function salvarMetas() {
     const metas = [];
