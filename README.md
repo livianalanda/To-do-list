@@ -37,3 +37,4 @@ Este projeto foi desenvolvido como parte dos meus estudos em *programação fron
 ---
 
 Acesse o projeto online: [To-do List](https://livianalanda.github.io/To-do-list/)
+[![Ver site](https://img.shields.io/badge/Ver%20projeto-Online-007ec6?style=for-the-badge&logo=github)](https://livianalanda.github.io/To-do-list/)
