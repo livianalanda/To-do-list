@@ -35,6 +35,4 @@ Este projeto é uma aplicação web completa para *organização pessoal*, desen
 Este projeto foi desenvolvido como parte dos meus estudos em *programação front-end*, com foco na prática de habilidades como manipulação do DOM, uso do localStorage, criação de múltiplas abas interativas e organização de interface. A aplicação vai além de uma simples lista de tarefas, oferecendo um sistema completo de organização pessoal com tarefas, metas e eventos, tudo em um só lugar.
 
 ---
-
-Acesse o projeto online: [To-do List](https://livianalanda.github.io/To-do-list/)
 [![Ver site](https://img.shields.io/badge/Ver%20projeto-Online-007ec6?style=for-the-badge&logo=github)](https://livianalanda.github.io/To-do-list/)
