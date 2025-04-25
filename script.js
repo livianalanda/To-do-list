@@ -182,12 +182,25 @@ document.getElementById("salvarEvento").onclick = () => {
 function atualizarListaEventos() {
     const lista = document.getElementById("listaEventos");
     lista.innerHTML = "";
-    (eventos[diaSelecionado] || []).forEach(ev => {
+    (eventos[diaSelecionado] || []).forEach((ev, index) => {
         const li = document.createElement("li");
-        li.textContent = ev;
+        li.innerHTML = `
+            ${ev}
+            <span class="botao-excluir" title="Excluir evento">🗑️</span>
+        `;
+        li.querySelector(".botao-excluir").addEventListener("click", () => {
+            eventos[diaSelecionado].splice(index, 1); // Remove o evento específico
+            if (eventos[diaSelecionado].length === 0) {
+                delete eventos[diaSelecionado]; // Se não tiver mais eventos, remove o dia
+            }
+            localStorage.setItem("eventos", JSON.stringify(eventos));
+            atualizarListaEventos();
+            carregarCalendario(mesAtual, anoAtual);
+        });
         lista.appendChild(li);
     });
 }
+
 
 document.getElementById("btnMostrarEventos").addEventListener("click", () => {
     eventos = JSON.parse(localStorage.getItem("eventos")) || {}; // Recarrega os eventos atualizados
