@@ -190,10 +190,16 @@ li {
 }
 
 .botao-excluir-tarefa {
+    margin-left: 10px;
+    background-color: #f8c6d2;
+    padding: 4px 8px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-left: 8px;
-    color: red;
-    font-size: 1.1em;
+    transition: background 0.3s;
+}
+
+.botao-excluir-tarefa:hover {
+    background-color: #f5aabf;
 }
 
 .com-evento {
