@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #ffeef5;
-    background-image: url('img/fundo.png');
+    background-image: url('img/fundo.png?v=1');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
