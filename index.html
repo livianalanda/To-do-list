@@ -10,10 +10,33 @@
 
 <body>
     <div class="tabs">
+        <button class="tab-button active" data-tab="inicial">Início</button>
         <button class="tab-button active" data-tab="calendario">Calendário</button>
         <button class="tab-button" data-tab="metas">Metas</button>
         <button class="tab-button" data-tab="tarefas">Tarefas</button>
     </div>
+
+    <div id="inicial" class="tab-content active">
+        <div class="inicio-container">
+            <img src="img/fundo.png" alt="Organização Pessoal" class="fundo-inicio" />
+    
+            <div class="cards-inicio">
+                <div class="card">
+                    <img src="img/calendario.png" alt="Calendário">
+                    <p>Gerencie seus eventos do mês com praticidade.</p>
+                </div>
+                <div class="card">
+                    <img src="img/metas.png" alt="Metas">
+                    <p>Defina suas metas com foco e clareza.</p>
+                </div>
+                <div class="card">
+                    <img src="img/tarefas.png" alt="Tarefas">
+                    <p>Organize suas tarefas e conclua com leveza.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <div id="calendario" class="tab-content active">
         <div class="calendar-header">
