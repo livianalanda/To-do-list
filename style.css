@@ -255,3 +255,30 @@ li {
     width: 80px;
     margin-bottom: 10px;
 }
+
+.tab-button {
+    color: #4b2c34 !important;
+    text-decoration: none !important;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .cards-inicio {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 15px;
+    }
+
+    .fundo-inicio {
+        object-fit: cover;
+        object-position: center;
+    }
+}
