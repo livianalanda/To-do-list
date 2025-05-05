@@ -17,32 +17,49 @@
     </div>
 
     <div id="inicial" class="tab-content active">
-        <div class="inicio-container">
+        <div class="inicio-container"> <!-- fim da .inicio-container -->
 
-            <div class="cards-inicio">
-                <div class="card">
-                    <img src="img/calendario.png" alt="Calendário">
-                    <p>Gerencie seus eventos do mês com praticidade.</p>
-                </div>
-                <div class="card">
-                    <img src="img/metas.png" alt="Metas">
-                    <p>Defina suas metas com foco e clareza.</p>
-                </div>
-                <div class="card">
-                    <img src="img/tarefas.png" alt="Tarefas">
-                    <p>Organize suas tarefas e conclua com leveza.</p>
-                </div>
+        <div class="cards-inicio">
+            <div class="card">
+                <img src="img/calendario.png" alt="Calendário">
+                <p>Gerencie seus eventos do mês com praticidade.</p>
+            </div>
+            <div class="card">
+                <img src="img/metas.png" alt="Metas">
+                <p>Defina suas metas com foco e clareza.</p>
+            </div>
+            <div class="card">
+                <img src="img/tarefas.png" alt="Tarefas">
+                <p>Organize suas tarefas e conclua com leveza.</p>
             </div>
         </div>
+
+        <div class="mensagem">Acredite que você pode e você já está no meio do caminho.</div>
+    </div>
+
+    </div>
     </div>
 
 
     <div id="calendario" class="tab-content active">
+        <!-- Botões anteriores e próximos do calendário -->
         <div class="calendar-header">
-            <button id="mesAnterior">⇦</button>
-            <h2 id="mesAno"></h2>
-            <button id="mesSeguinte">⇨</button>
+            <button id="mesAnterior" class="seta-bonita">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        
+            <h2 id="mesAno">Maio 2025</h2>
+        
+            <button id="mesSeguinte" class="seta-bonita">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 6L15 12L9 18" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
+        
+
 
         <div class="calendar-grid" id="diasCalendario"></div>
         <button id="btnMostrarEventos">Eventos</button>
@@ -83,7 +100,6 @@
 
     <script src="script.js"></script>
 
-    <div class="mensagem">Acredite que você pode e você já está no meio do caminho.</div>
 </body>
 
 </html>
